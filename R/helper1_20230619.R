@@ -12,7 +12,7 @@ helper1_20230619 <- function (my_params) {
         paste(my_params$bucket_list_groups$include, collapse = ",\n\t"),
         "\n) {\n\t",
         paste(my_params$bucket_list_groups$include, collapse = "\n\t"),
-        "\n\tbrowser()\n}"
+        "\n\tbrowser()\n\treturn(NULL)\n}"
       ),
       "filename_fn" = here::here(paste0("R/", my_params$new_function, ".R")),
       "txt_tgt" = paste0(

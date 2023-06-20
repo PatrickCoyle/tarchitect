@@ -38,8 +38,7 @@ targetsAddin <- function () {
       formatted <- helper1_20230619(my_output)
       readr::write_lines(formatted$txt_fn, formatted$filename_fn)
       readr::write_lines(formatted$txt_tgt, formatted$filename_tgt)
-      utils::file.edit(formatted$filename_tgt)
-      utils::file.edit(formatted$filename_fn)
+      utils::file.edit(formatted$filename_tgt, formatted$filename_fn)
       shiny::stopApp(my_output)
     })
   }
