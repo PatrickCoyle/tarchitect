@@ -1,0 +1,4 @@
+Name: Build new target
+Description: Build new target
+Binding: targetsAddin
+Interactive: false
