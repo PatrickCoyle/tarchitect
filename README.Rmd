@@ -1,0 +1,34 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# targetthis
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of `targetthis` is to provide a graphical user interface to assist in building targets pipelines.
+
+## Installation
+
+You can install the development version of targetthis from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("PatrickCoyle/targetthis")
+```
+
+## Example
+
+![Using targetthis gadgets in the RStudio IDE](misc/img1.png)
