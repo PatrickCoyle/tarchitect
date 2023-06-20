@@ -36,6 +36,10 @@ targetsAddin <- function () {
       my_output <- my_output_names %>%
         purrr::map(~input[[.x]])
       formatted <- helper1_20230619(my_output)
+      helper_fn_dir <- dirname(formatted$filename_fn)
+      if (!dir.exists(helper_fn_dir)) {
+        dir.create(helper_fn_dir)
+      }
       readr::write_lines(formatted$txt_fn, formatted$filename_fn)
       readr::write_lines(formatted$txt_tgt, formatted$filename_tgt)
       utils::file.edit(formatted$filename_tgt, formatted$filename_fn)
