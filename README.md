@@ -7,11 +7,13 @@
 <!-- badges: end -->
 
 The goal of `targetthis` is to provide a graphical user interface to
-assist in building targets pipelines.
+assist in building `targets` pipelines. The targets\` package is
+documented in [The {targets} R package user
+manual](https://books.ropensci.org/targets/)
 
 ## Installation
 
-You can install the development version of targetthis from
+You can install the development version of `targetthis` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -27,3 +29,26 @@ alt="Using targetthis gadgets in the RStudio IDE" />
 <figcaption aria-hidden="true">Using targetthis gadgets in the RStudio
 IDE</figcaption>
 </figure>
+
+## References
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-landau" class="csl-entry">
+
+Landau, William Michael. 2021. “The Targets r Package: A Dynamic
+Make-Like Function-Oriented Pipeline Toolkit for Reproducibility and
+High-Performance Computing.” *Journal of Open Source Software* 6 (57):
+2959. <https://doi.org/10.21105/joss.02959>.
+
+</div>
+
+<div id="ref-R-base" class="csl-entry">
+
+R Core Team. 2019. *R: A Language and Environment for Statistical
+Computing*. Vienna, Austria: R Foundation for Statistical Computing.
+<https://www.R-project.org>.
+
+</div>
+
+</div>
