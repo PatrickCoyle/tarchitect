@@ -20,7 +20,7 @@ helper1_20230619 <- function (my_params) {
         " = ",
         my_params$new_function,
         "(\n\t",
-        paste(my_params$bucket_list_groups$include, collapse = "\n\t"),
+        paste(my_params$bucket_list_groups$include, collapse = "\n\t,"),
         "\n),"
       ),
       "filename_tgt" = here::here(paste0("plan_", my_params$new_target, ".txt"))
