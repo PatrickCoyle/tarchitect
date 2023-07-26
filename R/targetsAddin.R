@@ -1,10 +1,13 @@
 #' Add-in for building a new target in a pipeline
 #'
+#' @param script Character of length 1, path to the target script file. See \link[targets]{tar_manifest} for details.
 #' @return a list of file names and file contents. the app has a side effect of creating file with the specified names and contents.
 #' @export
-targetsAddin <- function () {
+targetsAddin <- function (
+    script = targets::tar_config_get("script")
+) {
 
-  input_targets <- as.list(targets::tar_manifest()$name)
+  input_targets <- as.list(targets::tar_manifest(script = script)$name)
 
   ui <- miniUI::miniPage(
     miniUI::gadgetTitleBar("Build New Target"),

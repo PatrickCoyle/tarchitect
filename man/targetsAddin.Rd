@@ -4,7 +4,10 @@
 \alias{targetsAddin}
 \title{Add-in for building a new target in a pipeline}
 \usage{
-targetsAddin()
+targetsAddin(script = targets::tar_config_get("script"))
+}
+\arguments{
+\item{script}{Character of length 1, path to the target script file. See \link[targets]{tar_manifest} for details.}
 }
 \value{
 a list of file names and file contents. the app has a side effect of creating file with the specified names and contents.
