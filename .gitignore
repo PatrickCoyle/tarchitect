@@ -6,3 +6,4 @@ dev/
 renv.lock
 renv/
 README.Rmd
+_archive/
