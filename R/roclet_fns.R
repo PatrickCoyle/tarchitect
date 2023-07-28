@@ -50,7 +50,6 @@ roclet_process.roclet_memo <- function(x, blocks, env, base_path) {
 #' @return standard roxygen2 output
 #' @export
 roclet_output.roclet_memo <- function(x, results, base_path, ...) {
-	use_quarto_ext("document-fn")
   quarto::quarto_render(
     input = here::here("_extensions", "document-fn", "template.qmd"),
     execute_params = list("results" = results),
@@ -70,6 +69,7 @@ roclet_output.roclet_memo <- function(x, results, base_path, ...) {
 #' @return a list of roxygen tags from the file. A side effect is that function documentation is produced using Quarto.
 #' @export
 document_file <- function(my_file) {
+  use_quarto_ext("document-fn")
   tmp1 <- readr::read_lines(my_file)
   tmp2 <- tmp1 %>% paste(collapse = "\n")
   tmp3 <- tmp1 %>%
