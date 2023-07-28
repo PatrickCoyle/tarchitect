@@ -71,7 +71,7 @@ roclet_output.roclet_memo <- function(x, results, base_path, ...) {
       "```{r}",
       "#| echo: false",
       "",
-      paste0("these_results <- all_results[['", results$fn_name, "']]"),
+      paste0("these_results <- params$all_results[['", results$fn_name, "']]"),
       "```"
     ),
     tmp2[(yaml_end_line+1):length(tmp2)]
