@@ -50,6 +50,7 @@ roclet_process.roclet_memo <- function(x, blocks, env, base_path) {
 #' @return standard roxygen2 output
 #' @export
 roclet_output.roclet_memo <- function(x, results, base_path, ...) {
+	use_quarto_ext("document-fn")
   quarto::quarto_render(
     input = here::here("_extensions", "document-fn", "template.qmd"),
     execute_params = list("results" = results),
