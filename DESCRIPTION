@@ -1,11 +1,10 @@
 Package: targetthis
 Type: Package
-Title: What the Package Does (Title Case)
+Title: RStudio and `roxygen2` extensions for `targets` pipelines
 Version: 0.1.0
-Author: Who wrote it
+Author: Patrick Coyle
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Extends RStudio and `roxygen2` to assist in building and documenting `targets` pipelines.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
@@ -16,11 +15,14 @@ Imports:
     magrittr,
     miniUI,
     purrr,
+    quarto,
     readr,
     rhandsontable,
     rlang,
+    roxygen2,
     shiny,
     sortable,
+    stringr,
     targets,
     tibble,
     utils

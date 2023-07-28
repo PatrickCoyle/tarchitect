@@ -7,3 +7,6 @@
 ^README\.Rmd$
 ^misc$
 ^_archive$
+^_quarto\.yml$
+^document-fn$
+^_extensions$

@@ -7,3 +7,7 @@ renv.lock
 renv/
 README.Rmd
 _archive/
+_quarto.yml
+/.quarto/
+document-fn/
+_extensions/
