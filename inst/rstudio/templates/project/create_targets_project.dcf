@@ -1,0 +1,16 @@
+Binding: create_targets_project
+Title: Patrick's First Project Template
+OpenFiles: README.md
+
+Parameter: folder
+Widget: SelectInput
+Label: Choose the scope of the project
+Fields: Production, Development
+Default: Production
+Position: left
+
+Parameter: createGitignore
+Widget: CheckboxInput
+Label: Create .gitignore
+Default: On
+Position: right
