@@ -2,10 +2,9 @@
 title: ""
 format: html
 params:
-  results: NULL
+  all_results: NULL
 ---
 
 ```{r}
-print(params$results)
-print("triggering changes")
+print(these_results)
 ```
