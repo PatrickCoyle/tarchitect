@@ -50,13 +50,16 @@ roclet_process.roclet_memo <- function(x, blocks, env, base_path) {
 #' @importFrom readr read_lines write_lines
 #' @importFrom stringr str_equal
 #' @importFrom here here
+#' @importFrom readr write_rds
 #' @return standard roxygen2 output
 #' @export
 roclet_output.roclet_memo <- function(x, results, base_path, ...) {
+
   # Instead of rendering the Quarto file to HTML here, let's just edit the quarto file and give it a unique name
   # This will let us edit all quarto docs as a book using a single YAML file
-  tmp1 <- paste0(results$fn_name, ".qmd")
-  tmp2 <- readr::read_lines(here::here("_extensions", "document-fn", "template.qmd"))
+  tmp0 <- here::here("_extensions", "document-fn")
+  tmp1 <- here::here(tmp0, paste0(results$fn_name, ".qmd"))
+  tmp2 <- readr::read_lines(here(tmp0, "template.qmd"))
   yaml_end_line <- tmp2 %>%
     stringr::str_equal("---") %>%
     which() %>%
@@ -73,18 +76,15 @@ roclet_output.roclet_memo <- function(x, results, base_path, ...) {
     ),
     tmp2[(yaml_end_line+1):length(tmp2)]
   )
-  tmp3 %>% readr::write_lines(here::here("_extensions", "document-fn", paste0(results$fn_name, ".qmd")))
-  # tmp1 <- paste0(results$fn_name, ".html")
-  # quarto::quarto_render(
-  #   input = here::here("_extensions", "document-fn", "template.qmd"),
-  #   execute_params = list("results" = results),
-  #   output_file = tmp1
-  # )
-  # file.rename(
-  #   here::here(tmp1),
-  #   here::here("_extensions", "document-fn", tmp1)
-  # )
-  # print(results)
+
+  results_dir <- here::here(tmp0, "results")
+  if (!dir.exists(results_dir)) dir.create(results_dir)
+  results %>% readr::write_rds(here::here(results_dir, paste0(results$fn_name, ".rds")))
+
+  qmd_dir <- here::here(tmp0, "qmd")
+  if (!dir.exists(qmd_dir)) dir.create(qmd_dir)
+  tmp3 %>% readr::write_lines(here::here(qmd_dir, paste0(results$fn_name, ".qmd")))
+
   invisible(NULL)
 }
 
