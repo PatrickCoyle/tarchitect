@@ -50,14 +50,15 @@ roclet_process.roclet_memo <- function(x, blocks, env, base_path) {
 #' @return standard roxygen2 output
 #' @export
 roclet_output.roclet_memo <- function(x, results, base_path, ...) {
+  tmp1 <- paste0(results$fn_name, ".html")
   quarto::quarto_render(
     input = here::here("_extensions", "document-fn", "template.qmd"),
     execute_params = list("results" = results),
-    output_file = paste0(results$fn_name, ".html")
+    output_file = tmp1
   )
   file.rename(
-    here::here(paste0("test_fn", ".html")),
-    here::here(paste0("_extensions/document-fn/test_fn", ".html"))
+    here::here(tmp1),
+    here::here("_extensions", "document-fn", tmp1)
   )
   invisible(NULL)
 }
