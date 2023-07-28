@@ -1,0 +1,11 @@
+---
+title: ""
+format: html
+params:
+  results: NULL
+---
+
+```{r}
+print(params$results)
+print("triggering changes")
+```
