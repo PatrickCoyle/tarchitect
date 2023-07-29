@@ -4,11 +4,9 @@
 \alias{use_quarto_ext}
 \title{Install bundled Quarto extensions into current working directory}
 \usage{
-use_quarto_ext(file_name = NULL, ext_name = "document-fn")
+use_quarto_ext(ext_name = "document-fn")
 }
 \arguments{
-\item{file_name}{A valid file name}
-
 \item{ext_name}{String indicating which extension to install}
 }
 \value{
