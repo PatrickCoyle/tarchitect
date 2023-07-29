@@ -65,7 +65,11 @@ roclet_output.roclet_memo <- function(x, results, base_path, ...) {
     which() %>%
     max()
   tmp3 <- c(
-    tmp2[1:yaml_end_line],
+    stringr::str_replace(
+      tmp2[1:yaml_end_line],
+      "title: \"\"",
+      paste0("title: \"", results$fn_name,"()\"")
+    ),
     c(
       "",
       "```{r}",
