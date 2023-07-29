@@ -5,7 +5,7 @@
 #' @importFrom stats setNames
 #' @return Renders a Quarto book as a side effect. Returns the directory of the Quarto book.
 #' @export
-render_book <- function(my_extension, my_fns) {
+prerender_book <- function(my_extension, my_fns) {
   tmp0 <- here::here("_extensions", my_extension)
   use_quarto_ext(my_extension)
   for(my_fn in my_fns) {
@@ -20,13 +20,9 @@ render_book <- function(my_extension, my_fns) {
   )
   yaml_out %>% readr::write_lines(here::here(tmp0, "_quarto.yml"))
   tmp2 <- stats::setNames(my_fns, my_fns)
-  all_results <- tmp2 %>%
+  these_results <- tmp2 %>%
     purrr::map(
       ~readr::read_rds(here::here("_extensions", my_extension, "results", paste0(.x, ".rds")))
     )
-  quarto::quarto_render(
-    input = tmp0,
-    execute_params = list("all_results" = all_results)
-  )
-  return(tmp0)
+  return(these_results)
 }
