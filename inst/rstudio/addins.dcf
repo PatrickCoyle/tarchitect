@@ -2,3 +2,8 @@ Name: Build new target
 Description: Build new target
 Binding: targetsAddin
 Interactive: false
+
+Name: Load target at cursor
+Description: Loads target at cursor
+Binding: targetsAddin2
+Interactive: false

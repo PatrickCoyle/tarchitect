@@ -1,14 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# targetthis
+# targetthis <img src="man/figures/logo.png" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `targetthis` is to provide a graphical user interface to
-assist in building `targets` pipelines. The targets\` package is
-documented in [The {targets} R package user
+The `targetthis` package extends RStudio to assist in building and
+documenting `targets` pipelines. The `targets` package is documented in
+[The {targets} R package user
 manual](https://books.ropensci.org/targets/)
 
 ## Installation
