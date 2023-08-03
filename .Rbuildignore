@@ -6,3 +6,6 @@
 ^LICENSE\.md$
 ^misc$
 ^_archive$
+^run\.R$
+^_targets\.R$
+^_targets$

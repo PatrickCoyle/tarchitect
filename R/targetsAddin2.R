@@ -2,5 +2,8 @@
 #'
 #' @export
 targetsAddin2 <- function () {
-  targets::tar_load(rstudioapi::getActiveDocumentContext()$selection[[1]]$text)
+  targets::tar_load(
+    rstudioapi::getActiveDocumentContext()$selection[[1]]$text,
+    envir = .GlobalEnv
+  )
 }
