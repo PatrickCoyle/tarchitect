@@ -21,7 +21,7 @@ You can install the development version of `targetthis` from
 devtools::install_github("PatrickCoyle/targetthis")
 ```
 
-## Example
+## Feature 1: Shiny gadget to build a new target from available inputs
 
 <figure>
 <img src="misc/img1.png"
@@ -29,6 +29,15 @@ alt="Using targetthis gadgets in the RStudio IDE" />
 <figcaption aria-hidden="true">Using targetthis gadgets in the RStudio
 IDE</figcaption>
 </figure>
+
+## Feature 2: RStudio addin to load a highlighted target into the global environment
+
+![](misc/img2.png)
+
+It is recommended to bind this addin to a [keyboard
+shortcut](https://support.posit.co/hc/en-us/articles/206382178-Customizing-Keyboard-Shortcuts-in-the-RStudio-IDE).
+
+![](misc/img3.png)
 
 ## References
 

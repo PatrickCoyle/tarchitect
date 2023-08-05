@@ -3,7 +3,7 @@ Description: Build new target
 Binding: targetsAddin
 Interactive: false
 
-Name: Load target at cursor
-Description: Loads target at cursor
+Name: Load highlighted target
+Description: Loads highlighted target
 Binding: targetsAddin2
 Interactive: false
