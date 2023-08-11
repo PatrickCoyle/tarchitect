@@ -3,8 +3,6 @@
 .RData
 .Ruserdata
 dev/
-renv.lock
-renv/
 _archive/
 /.quarto/
 run.R
