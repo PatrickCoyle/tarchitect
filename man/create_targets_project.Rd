@@ -12,5 +12,5 @@ create_targets_project(path, ...)
 \item{...}{additional parameters}
 }
 \description{
-It's callback is at: inst/rstudio/templates/project/create_targets_project.dcf
+See inst/rstudio/templates/project/create_targets_project.dcf
 }

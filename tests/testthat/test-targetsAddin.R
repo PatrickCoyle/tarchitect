@@ -1,5 +1,4 @@
 test_that("a test test", {
-
   # Create a temporary targets file
   tmp1 <- targets::tar_dir({
     targets::tar_script(
@@ -11,7 +10,6 @@ test_that("a test test", {
         )
       }
     )
-    # targetsAddin()
     targets::tar_make(z)
     return(targets::tar_read(z))
   })

@@ -1,9 +1,9 @@
 Name: Build new target
 Description: Build new target
-Binding: targetsAddin
+Binding: targets_addin
 Interactive: false
 
 Name: Load highlighted target
 Description: Loads highlighted target
-Binding: targetsAddin2
+Binding: targets_addin2
 Interactive: false

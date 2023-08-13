@@ -1,12 +1,13 @@
 #' Add-in for building a new target in a pipeline
 #'
 #' @importFrom rlang .data
-#' @param script Character of length 1, path to the target script file. See \link[targets]{tar_manifest} for details.
-#' @return a list of file names and file contents. the app has a side effect of creating file with the specified names and contents.
+#' @param script Character of length 1, path to the target script file.
+#' See \link[targets]{tar_manifest} for details.
+#' @return a list of file names and file contents.
+#' The app has a side effect of creating a file
+#' with the specified names and contents.
 #' @export
-targetsAddin <- function (
-    script = targets::tar_config_get("script")
-) {
+targets_addin <- function(script = targets::tar_config_get("script")) {
   input_targets <- as.list(targets::tar_manifest(script = script)$name)
   ui <- miniUI::miniPage(
     miniUI::gadgetTitleBar("Build New Target"),
@@ -41,7 +42,6 @@ targetsAddin <- function (
           rhandsontable::rHandsontableOutput("tbl1")
         )
       )
-
     )
   )
   server <- function(input, output, session) {
@@ -53,13 +53,15 @@ targetsAddin <- function (
         dplyr::mutate(
           Input_Name = .data[["Target"]],
           Import_Option = factor("as is",
-                                 levels = c("as is",
-                                            "readr::read_rds",
-                                            "readr::read_csv",
-                                            "openxlsx2::read_xlsx",
-                                            "readr::read_delim(delim = '|')",
-                                            "haven::read_sas"),
-                                 ordered = TRUE
+            levels = c(
+              "as is",
+              "readr::read_rds",
+              "readr::read_csv",
+              "openxlsx2::read_xlsx",
+              "readr::read_delim(delim = '|')",
+              "haven::read_sas"
+            ),
+            ordered = TRUE
           )
         )
     })
@@ -73,7 +75,7 @@ targetsAddin <- function (
         "new_function"
       ) %>%
         purrr::set_names() %>%
-        purrr::map(~input[[.x]]) %>%
+        purrr::map(~ input[[.x]]) %>%
         c(list("new_inputs_df" = tmp1))
       tmp3 <- helper2_20230726(tmp2)
       helper_fn_dir <- dirname(tmp3$filename_fn)

@@ -5,7 +5,9 @@
 
 <!-- badges: start -->
 
+[![status](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
 [![R-CMD-check](https://github.com/PatrickCoyle/targetthis/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/PatrickCoyle/targetthis/actions/workflows/R-CMD-check.yaml)
+[![lint](https://github.com/PatrickCoyle/targetthis/actions/workflows/lint.yaml/badge.svg)](https://github.com/PatrickCoyle/targetthis/actions/workflows/lint.yaml)
 <!-- badges: end -->
 
 The `targetthis` package extends RStudio to assist in building and
