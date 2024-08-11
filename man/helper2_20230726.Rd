@@ -4,10 +4,7 @@
 \alias{helper2_20230726}
 \title{Helper for building a new target in a pipeline}
 \usage{
-helper2_20230726(my_params)
-}
-\arguments{
-\item{my_params}{a list of parameters provided by the user via targetsAddin()}
+helper2_20230726(new_inputs_df, new_target, new_function)
 }
 \value{
 a list of file names and file contents

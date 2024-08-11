@@ -34,10 +34,7 @@ targets_addin <- function(script = targets::tar_config_get("script")) {
               input_id = "include"
             )
           )
-        )
-      ),
-      miniUI::miniTabPanel(
-        "Step 2",
+        ),
         miniUI::miniContentPanel(
           rhandsontable::rHandsontableOutput("tbl1")
         )
@@ -48,45 +45,37 @@ targets_addin <- function(script = targets::tar_config_get("script")) {
     rv1 <- shiny::reactiveValues(dat = NULL)
     shiny::observeEvent(input$bucket_list_groups$include, {
       rv1$dat <- tibble::tibble(
-        Target = unlist(input$bucket_list_groups$include)
-      ) |>
-        dplyr::mutate(
-          Input_Name = .data[["Target"]],
-          Import_Option = factor("as is",
-            levels = c(
-              "as is",
-              "readr::read_rds",
-              "readr::read_csv",
-              "openxlsx2::read_xlsx",
-              "readr::read_delim(delim = '|')",
-              "haven::read_sas"
-            ),
-            ordered = TRUE
-          )
-        )
+        Input_Name = unlist(input$bucket_list_groups$include),
+        Import_Option = "As is"
+      )
     })
     output$tbl1 <- rhandsontable::renderRHandsontable({
       rhandsontable::rhandsontable(rv1$dat, height = 300)
     })
     shiny::observeEvent(input$done, {
-      tmp1 <- rhandsontable::hot_to_r(input$tbl1)
-      tmp2 <- c(
-        "new_target",
-        "new_function"
-      ) |>
-        purrr::set_names() |>
-        purrr::map(~ input[[.x]]) |>
-        c(list("new_inputs_df" = tmp1))
-      tmp3 <- helper2_20230726(tmp2)
-      helper_fn_dir <- dirname(tmp3$filename_fn)
-      if (!dir.exists(helper_fn_dir)) {
-        dir.create(helper_fn_dir)
-      }
-      readr::write_lines(tmp3$txt_fn, tmp3$filename_fn)
-      readr::write_lines(tmp3$txt_tgt, tmp3$filename_tgt)
-      utils::file.edit(tmp3$filename_tgt, tmp3$filename_fn)
-      shiny::stopApp(tmp3)
+      tmp3 <- input$tbl1 |> 
+      rhandsontable::hot_to_r() |>
+      dplyr::mutate(
+        import_script1 = dplyr::case_when(
+          Import_Option == "As is" ~ Input_Name,
+          TRUE ~ paste0(Import_Option, "(", Input_Name, ")")
+        )
+      ) |> 
+      dplyr::transmute(
+        Input_Name_fixed = dplyr::case_when(
+          Import_Option == "As is" ~ Input_Name,
+          TRUE ~ paste0(Input_Name, "_obj")
+        ),
+        import_script2 = paste0(Input_Name_fixed, " = ", import_script1)
+      ) |> 
+      helper2_20230726(
+        new_target = input$new_target,
+        new_function = input$new_function
+      )
+      shiny::stopApp(tmp3$txt_tgt)
     })
   }
-  shiny::runGadget(ui, server)
+  to_return <- shiny::runGadget(ui, server)
+  cat(to_return)
+  return(to_return)
 }

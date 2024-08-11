@@ -13,7 +13,6 @@ Imports:
     dplyr,
     here,
     miniUI,
-    purrr,
     readr,
     rhandsontable,
     rlang,
