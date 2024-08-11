@@ -49,7 +49,7 @@ targets_addin <- function(script = targets::tar_config_get("script")) {
     shiny::observeEvent(input$bucket_list_groups$include, {
       rv1$dat <- tibble::tibble(
         Target = unlist(input$bucket_list_groups$include)
-      ) %>%
+      ) |>
         dplyr::mutate(
           Input_Name = .data[["Target"]],
           Import_Option = factor("as is",
@@ -73,9 +73,9 @@ targets_addin <- function(script = targets::tar_config_get("script")) {
       tmp2 <- c(
         "new_target",
         "new_function"
-      ) %>%
-        purrr::set_names() %>%
-        purrr::map(~ input[[.x]]) %>%
+      ) |>
+        purrr::set_names() |>
+        purrr::map(~ input[[.x]]) |>
         c(list("new_inputs_df" = tmp1))
       tmp3 <- helper2_20230726(tmp2)
       helper_fn_dir <- dirname(tmp3$filename_fn)
