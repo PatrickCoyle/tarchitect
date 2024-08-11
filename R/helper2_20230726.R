@@ -5,7 +5,7 @@
 #' @return a list of file names and file contents
 #' @export
 helper2_20230726 <- function(my_params) {
-  tmp1 <- my_params$new_inputs_df %>%
+  tmp1 <- my_params$new_inputs_df |>
     dplyr::mutate(
       import_script1 = dplyr::case_when(
         Import_Option == "as is" ~ .data[["Target"]],
