@@ -18,10 +18,8 @@ Imports:
     readr,
     rhandsontable,
     rlang,
-    rstudioapi,
     shiny,
     sortable,
-	tarchetypes,
     targets,
     tibble,
     utils
