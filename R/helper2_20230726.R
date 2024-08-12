@@ -5,6 +5,7 @@
 #' @param new_target
 #' @param new_function
 #' @return a list of file names and file contents
+#' @autoglobal
 #' @export
 helper2_20230726 <- function(
   new_inputs_df,

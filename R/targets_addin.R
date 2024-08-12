@@ -6,6 +6,7 @@
 #' @return a list of file names and file contents.
 #' The app has a side effect of creating a file
 #' with the specified names and contents.
+#' @autoglobal
 #' @export
 targets_addin <- function(script = targets::tar_config_get("script")) {
   input_targets <- as.list(targets::tar_manifest(script = script)$name)
