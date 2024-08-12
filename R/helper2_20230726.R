@@ -1,9 +1,9 @@
 #' Helper for building a new target in a pipeline
 #'
 #' @importFrom rlang .data
-#' @param new_inputs_df
-#' @param new_target
-#' @param new_function
+#' @param new_inputs_df a data frame
+#' @param new_target a character vector of length 1
+#' @param new_function a character vector of length 1
 #' @return a list of file names and file contents
 #' @autoglobal
 #' @export

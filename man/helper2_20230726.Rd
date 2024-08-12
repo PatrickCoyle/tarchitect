@@ -6,6 +6,13 @@
 \usage{
 helper2_20230726(new_inputs_df, new_target, new_function)
 }
+\arguments{
+\item{new_inputs_df}{a data frame}
+
+\item{new_target}{a character vector of length 1}
+
+\item{new_function}{a character vector of length 1}
+}
 \value{
 a list of file names and file contents
 }

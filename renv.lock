@@ -798,21 +798,6 @@
       ],
       "Hash": "878b467580097e9c383acbb16adab57a"
     },
-    "purrr": {
-      "Package": "purrr",
-      "Version": "1.0.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "cli",
-        "lifecycle",
-        "magrittr",
-        "rlang",
-        "vctrs"
-      ],
-      "Hash": "1cba04a4e9414bdefc9dcaa99649a8dc"
-    },
     "rappdirs": {
       "Package": "rappdirs",
       "Version": "0.3.3",

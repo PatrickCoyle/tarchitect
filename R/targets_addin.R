@@ -43,7 +43,7 @@ targets_addin <- function(script = targets::tar_config_get("script")) {
     )
   )
   server <- function(input, output, session) {
-    rv1 <- shiny::reactiveValues(dat = NULL)
+    rv1 <- shiny::reactiveValues(dat = tibble::tibble(c()))
     shiny::observeEvent(input$bucket_list_groups$include, {
       rv1$dat <- tibble::tibble(
         Input_Name = unlist(input$bucket_list_groups$include),
@@ -73,10 +73,11 @@ targets_addin <- function(script = targets::tar_config_get("script")) {
         new_target = input$new_target,
         new_function = input$new_function
       )
-      shiny::stopApp(tmp3$txt_tgt)
+      shiny::stopApp(tmp3)
     })
   }
-  to_return <- shiny::runGadget(ui, server)
-  cat(to_return)
-  return(to_return)
+  shiny_out <- shiny::runGadget(ui, server)
+  utils::file.edit(shiny_out$filename_fn)
+  cat(shiny_out$txt_tgt)
+  return(shiny_out$txt_tgt)
 }
