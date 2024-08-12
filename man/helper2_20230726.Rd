@@ -4,7 +4,7 @@
 \alias{helper2_20230726}
 \title{Helper for building a new target in a pipeline}
 \usage{
-helper2_20230726(new_inputs_df, new_target, new_function)
+helper2_20230726(new_inputs_df, new_target, new_function, code_folder = "R")
 }
 \arguments{
 \item{new_inputs_df}{a data frame}
@@ -12,6 +12,8 @@ helper2_20230726(new_inputs_df, new_target, new_function)
 \item{new_target}{a character vector of length 1}
 
 \item{new_function}{a character vector of length 1}
+
+\item{code_folder}{a character vector of length 1}
 }
 \value{
 a list of file names and file contents

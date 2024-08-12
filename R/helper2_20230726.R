@@ -4,13 +4,15 @@
 #' @param new_inputs_df a data frame
 #' @param new_target a character vector of length 1
 #' @param new_function a character vector of length 1
+#' @param code_folder a character vector of length 1
 #' @return a list of file names and file contents
 #' @autoglobal
 #' @export
 helper2_20230726 <- function(
   new_inputs_df,
   new_target,
-  new_function
+  new_function,
+  code_folder = "R"
 ) {
   tmp2 <- list(
     "txt_fn" = paste0(
@@ -21,7 +23,7 @@ helper2_20230726 <- function(
       paste(new_inputs_df$Input_Name_fixed, collapse = "\n\t"),
       "\n\treturn(NULL)\n}"
     ),
-    "filename_fn" = here::here("R", paste0(new_function, ".R")),
+    "filename_fn" = file.path(code_folder, paste0(new_function, ".R")),
     "txt_tgt" = paste0(
       new_target,
       " = ",
