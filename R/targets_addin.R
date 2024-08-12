@@ -1,6 +1,5 @@
 #' Add-in for building a new target in a pipeline
 #'
-#' @importFrom rlang .data
 #' @param script Character of length 1, path to the target script file.
 #' See \link[targets]{tar_manifest} for details.
 #' @return a list of file names and file contents.
@@ -43,9 +42,9 @@ targets_addin <- function(script = targets::tar_config_get("script")) {
     )
   )
   server <- function(input, output, session) {
-    rv1 <- shiny::reactiveValues(dat = tibble::tibble(c()))
+    rv1 <- shiny::reactiveValues(dat = dplyr::tibble(c()))
     shiny::observeEvent(input$bucket_list_groups$include, {
-      rv1$dat <- tibble::tibble(
+      rv1$dat <- dplyr::tibble(
         Input_Name = unlist(input$bucket_list_groups$include),
         Import_Option = "As is"
       )

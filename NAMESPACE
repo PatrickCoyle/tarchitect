@@ -2,5 +2,4 @@
 
 export(helper2_20230726)
 export(targets_addin)
-importFrom(rlang,.data)
 importFrom(utils,file.edit)
