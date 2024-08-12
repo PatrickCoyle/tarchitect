@@ -24,10 +24,7 @@ helper2_20230726 <- function(
     ),
     "filename_fn" = file.path(code_folder, paste0(new_function, ".R")),
     "txt_tgt" = paste0(
-      new_target,
-      " = ",
-      new_function,
-      "(\n\t",
+      new_target," = ", new_function, "(\n\t",
       paste(new_inputs_df$import_script2, collapse = ",\n\t"),
       "\n)"
     )
