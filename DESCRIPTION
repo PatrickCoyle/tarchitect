@@ -10,6 +10,7 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 Imports: 
+    docthis (>= 0.1.1),
     dplyr,
     here,
     miniUI,
@@ -18,6 +19,7 @@ Imports:
     rlang,
     shiny,
     sortable,
+    stringr,
     targets,
     tibble,
     utils
@@ -31,3 +33,5 @@ Roxygen: list(roclets = c("collate", "namespace", "rd",
     "roxyglobals::global_roclet"))
 Config/roxyglobals/filename: globals.R
 Config/roxyglobals/unique: FALSE
+Remotes:  
+    mdlincoln/docthis

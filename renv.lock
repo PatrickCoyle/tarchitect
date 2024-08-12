@@ -289,6 +289,21 @@
       ],
       "Hash": "fd6824ad91ede64151e93af67df6376b"
     },
+    "docthis": {
+      "Package": "docthis",
+      "Version": "0.1.1",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "mdlincoln",
+      "RemoteRepo": "docthis",
+      "RemoteRef": "master",
+      "RemoteSha": "0f2463491d9d79d724a3c87a464abd6586572ebe",
+      "Requirements": [
+        "rstudioapi"
+      ],
+      "Hash": "d2699afd2fb86a5fb981d086b18f909b"
+    },
     "dplyr": {
       "Package": "dplyr",
       "Version": "1.1.4",
@@ -909,6 +924,13 @@
       ],
       "Hash": "4c8415e0ec1e29f3f4f6fc108bef0144"
     },
+    "rstudioapi": {
+      "Package": "rstudioapi",
+      "Version": "0.16.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "96710351d642b70e8f02ddeb237c46a7"
+    },
     "sass": {
       "Package": "sass",
       "Version": "0.4.9",
@@ -993,6 +1015,36 @@
         "R"
       ],
       "Hash": "5f5a7629f956619d519205ec475fe647"
+    },
+    "stringi": {
+      "Package": "stringi",
+      "Version": "1.8.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "stats",
+        "tools",
+        "utils"
+      ],
+      "Hash": "39e1144fd75428983dc3f63aa53dfa91"
+    },
+    "stringr": {
+      "Package": "stringr",
+      "Version": "1.5.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "cli",
+        "glue",
+        "lifecycle",
+        "magrittr",
+        "rlang",
+        "stringi",
+        "vctrs"
+      ],
+      "Hash": "960e2ae9e09656611e0b8214ad543207"
     },
     "targets": {
       "Package": "targets",

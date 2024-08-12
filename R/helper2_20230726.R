@@ -36,7 +36,12 @@ helper2_20230726 <- function(
     dir.create(helper_fn_dir)
   }
   readr::write_lines(tmp2$txt_fn, tmp2$filename_fn)
-  # readr::write_lines(tmp3$txt_tgt, tmp3$filename_tgt)
-  # utils::file.edit(tmp3$filename_tgt, tmp3$filename_fn)
+  source(tmp2$filename_fn)
+  new_function |> 
+    docthis::doc_this() |> 
+    stringr::str_remove("\n#' FUNCTION_TITLE\n#'\n") |> 
+    stringr::str_remove("\n#' @examples\n#' # ADD_EXAMPLES_HERE\nmake_gg") |> 
+    c(readr::read_lines(file = tmp2$filename_fn)) |> 
+  readr::write_lines(file = tmp2$filename_fn)
   return(tmp2)
 }
