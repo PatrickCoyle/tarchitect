@@ -8,6 +8,6 @@
 # * https://r-pkgs.org/testing-basics.html
 
 library(testthat)
-library(targetthis)
+library(tarchitect)
 
-test_check("targetthis")
+test_check("tarchitect")

@@ -1,27 +1,27 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# targetthis <img src="man/figures/logo.png" align="right" height="139" alt="" />
+# tarchitect <img src="man/figures/logo.png" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 
 [![status](https://www.repostatus.org/badges/latest/concept.svg)](https://www.repostatus.org/#concept)
-[![R-CMD-check](https://github.com/PatrickCoyle/targetthis/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/PatrickCoyle/targetthis/actions/workflows/R-CMD-check.yaml)
-[![lint](https://github.com/PatrickCoyle/targetthis/actions/workflows/lint.yaml/badge.svg)](https://github.com/PatrickCoyle/targetthis/actions/workflows/lint.yaml)
+[![R-CMD-check](https://github.com/PatrickCoyle/tarchitect/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/PatrickCoyle/tarchitect/actions/workflows/R-CMD-check.yaml)
+[![lint](https://github.com/PatrickCoyle/tarchitect/actions/workflows/lint.yaml/badge.svg)](https://github.com/PatrickCoyle/tarchitect/actions/workflows/lint.yaml)
 <!-- badges: end -->
 
-The `targetthis` package provides a Shiny widget to help build a
+The `tarchitect` package provides a Shiny widget to help build a
 `targets` pipeline. The `targets` package is documented in [The
 {targets} R package user manual](https://books.ropensci.org/targets/)
 
 ## Installation
 
-You can install the development version of `targetthis` from
+You can install the development version of `tarchitect` from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("PatrickCoyle/targetthis")
+devtools::install_github("PatrickCoyle/tarchitect")
 ```
 
 <div id="refs" class="references csl-bib-body hanging-indent"
