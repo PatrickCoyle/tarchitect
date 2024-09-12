@@ -4,10 +4,10 @@
 \alias{tarchitect_exit}
 \title{Exit tarchitect function}
 \usage{
-tarchitect_exit(input_list)
+tarchitect_exit(exit_list, envir = parent.frame(n = 2))
 }
 \arguments{
-\item{input_list}{a list object; the output of shiny::runGadget()}
+\item{exit_list}{a list object; the output of shiny::runGadget()}
 }
 \description{
 Exit tarchitect function

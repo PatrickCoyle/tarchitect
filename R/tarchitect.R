@@ -12,22 +12,27 @@ tarchitect <- function(
     script = targets::tar_config_get("script"),
     code_folder = "R/"
 ) {
+  avail_tgts <- targets::tar_manifest(script = script)$name |>
+    purrr::set_names()
   ui <- miniUI::miniPage(
     shinyjs::useShinyjs(),
     miniUI::gadgetTitleBar("Build New Target"),
     miniUI::miniContentPanel(
       miniUI::miniButtonBlock(
-        shiny::textInput("new_target", "New Target Name"),
-        shiny::textInput("new_function", "New Function Name"),
+        shiny::textInput("new_target", "New Target Name", "new_target"),
+        shiny::textInput("new_function", "New Function Name", "new_function"),
         shiny::selectInput(
-          "tar_load_option",
-          "Load Option",
+          "load_targets",
+          "Targets to Load",
           choices = c(
-            "Load Nothing",
-            "Load Input Targets",
-            "Load Input Targets and Global Objects",
-            "Load Everything"
+            "None",
+            "Selected Inputs",
+            "Everything"
           )
+        ),
+        shiny::checkboxInput(
+          "load_globals",
+          label = "Load global objects?"
         )
       ),
       sortable::bucket_list(
@@ -36,7 +41,12 @@ tarchitect <- function(
         orientation = "horizontal",
         sortable::add_rank_list(
           text = "Available Inputs",
-          labels = as.list(targets::tar_manifest(script = script)$name),
+          labels = avail_tgts |>
+            purrr::map(~shiny::tags$div(
+              shiny::textInput(paste0(.x, ".target"), "Target", .x),
+              shiny::textInput(paste0(.x, ".parameter"), "Parameter", .x),
+              shiny::textInput(paste0(.x, ".load"), "Input", .x)
+            )),
           input_id = "exclude"
         ),
         sortable::add_rank_list(
@@ -45,52 +55,37 @@ tarchitect <- function(
           input_id = "include"
         )
       ),
-      shiny::h5(
-        shiny::HTML('&nbsp;&nbsp;&nbsp;&nbsp;'),
-        "Specify parameter names and inputs"
-      ),
-      shiny::div(
-        rhandsontable::rHandsontableOutput("tbl1"),
-        style = "
-          max-width: fit-content;
-          margin-left: auto;
-          margin-right: auto;
-          margin-bottom: 10px;
-        "
-      ),
-      shiny::h5(
-        shiny::HTML('&nbsp;&nbsp;&nbsp;&nbsp;'),
-        "Preview function"
-      ),
       shiny::verbatimTextOutput("text_fn_out")
     )
   )
   server <- function(input, output, session) {
-    hot_df <- shiny::eventReactive(input$bucket_list_groups$include, {
+    shiny::observeEvent(input$bucket_list_groups$include, {
+      input$bucket_list_groups$include |>
+        purrr::map(~{
+          shinyjs::show(paste0(.x, ".parameter"))
+          shinyjs::show(paste0(.x, ".load"))
+        })
+    })
+    shiny::observeEvent(input$bucket_list_groups$exclude, {
+      input$bucket_list_groups$exclude |>
+        purrr::map(~{
+          shinyjs::hide(paste0(.x, ".parameter"))
+          shinyjs::hide(paste0(.x, ".load"))
+        })
+    })
+
+    hot_df <- shiny::reactive({
       vec1 <- unlist(input$bucket_list_groups$include)
       to_return <- dplyr::tibble(
-        Target = vec1,
-        Parameter = vec1,
-        Input = vec1
+        Target = input[[paste0(vec1, ".target")]],
+        Parameter = input[[paste0(vec1,".parameter")]],
+        Input = input[[paste0(vec1,".load")]],
       )
       return(to_return)
     })
-    output$tbl1 <- rhandsontable::renderRHandsontable(
-      hot_df() |>
-        rhandsontable::rhandsontable(
-          rowHeaders = NULL,
-          overflow = "hidden"
-        ) |>
-        rhandsontable::hot_col("Target", readOnly = TRUE)
-    )
-    df_in <- shiny::reactive(
-      rhandsontable::hot_to_r(
-        input$tbl1
-      )
-    )
     text_fn_out <- shiny::reactive(
       get_text_function(
-        parameters = df_in()$Parameter,
+        parameters = hot_df()$Parameter,
         new_function = input$new_function
       )
     )
@@ -98,27 +93,45 @@ tarchitect <- function(
       text_fn_out()
     )
     shiny::observeEvent(input$done, {
-      write_function_script(
-        new_function = input$new_function,
-        code_folder = code_folder,
-        text_fn = text_fn_out()
-      )
-      to_return <- list(
-        targets = df_in() |>
-          dplyr::pull(Target),
-        plan_text = df_in() |>
-          dplyr::transmute(import_script = paste0(Parameter, " = ", Input)) |>
-          dplyr::pull(import_script) |>
-          get_text_plan(
+      if (nchar(input$new_function) == 0) {
+        shinyalert::shinyalert("Error", "No function name selected.", type = "error")
+      } else if (nchar(input$new_target) == 0) {
+        shinyalert::shinyalert("Error", "No new target name selected.", type = "error")
+      } else {
+        write_function_script(
+          new_function = input$new_function,
+          code_folder = code_folder,
+          text_fn = text_fn_out()
+        )
+        if (nrow(hot_df()) == 0) {
+          targets_to_return <- ""
+          plan_text <- get_text_plan(
+            import_script = "",
             new_target = input$new_target,
             new_function = input$new_function
-          ),
-        tar_load_option = input$tar_load_option
-      )
-      shiny::stopApp(to_return)
+          )
+        } else {
+          targets_to_return <- hot_df() |>
+            dplyr::pull(Target)
+          plan_text <- hot_df() |>
+            dplyr::transmute(import_script = paste0(Parameter, " = ", Input)) |>
+            dplyr::pull(import_script) |>
+            get_text_plan(
+              new_target = input$new_target,
+              new_function = input$new_function
+            )
+        }
+        to_return <- list(
+          targets = targets_to_return,
+          plan_text = plan_text,
+          load_targets = input$load_targets,
+          load_globals = input$load_globals
+        )
+        shiny::stopApp(to_return)
+      }
     })
   }
   to_return <- shiny::runGadget(ui, server)
-  on.exit(tarchitect_exit(input_list = to_return))
+  on.exit(tarchitect_exit(exit_list = to_return))
   return(to_return$plan_text)
 }

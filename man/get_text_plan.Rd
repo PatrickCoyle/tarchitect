@@ -7,7 +7,7 @@
 get_text_plan(import_script, new_target, new_function)
 }
 \arguments{
-\item{import_script}{}
+\item{new_function}{}
 }
 \description{
 Title

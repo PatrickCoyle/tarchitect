@@ -5,8 +5,6 @@
 \alias{tarchitect-package}
 \title{tarchitect: Shiny widget to help build a `targets` pipeline}
 \description{
-\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
-
 Shiny widget to help build a `targets` pipeline.
 }
 \keyword{internal}
